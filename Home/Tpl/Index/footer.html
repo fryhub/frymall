@@ -1,0 +1,28 @@
+<div class="footer">
+	<div class="mainwidth">
+		<if condition="empty($akmallConfig['contact_tel']) && empty($akmallConfig['contact_phone']) && empty($akmallConfig['contact_facebook']) && empty($akmallConfig['contact_messenger']) && empty($akmallConfig['contact_line']) && empty($akmallConfig['contact_whatsapp']) && empty($akmallConfig['contact_qq'])">
+		<style>.akmall-copyright{width:100% !important;padding-right:0 !important;border-right:none !important;text-align:center;}.akmall-contact{display:none !important;}</style>
+		</if>
+		<ul class="footcon">
+			<li class="akmall-copyright">
+				<div class="copyright">{$akmallConfig.footer}</div>
+			</li>
+			<li class="akmall-contact">
+				<div class="foottel">
+					<notempty name="akmallConfig.contact_tel"><span class="tell">{:lang('serviceNumber')}<span class="num">{$akmallConfig.contact_tel}</span></span></notempty></br>
+					<notempty name="akmallConfig.contact_phone"><a href="sms:{$akmallConfig.contact_phone}"><span class="foot-icon phone"><i class="icon-phone"></i></span></a></notempty>
+					<notempty name="akmallConfig.contact_facebook"><a target="_blank" href="{$akmallConfig.contact_facebook}"><span class="foot-icon facebook"><i class="icon-facebook"></i></span></a></notempty>
+					<notempty name="akmallConfig.contact_messenger"><a target="_blank" href="{$akmallConfig.contact_messenger}"><span class="foot-icon messenger"><i class="icon-messenger"></i></span></a></notempty>
+					<notempty name="akmallConfig.contact_line"><a target="_blank" href="{$akmallConfig.contact_line_url}"><span class="foot-icon line"><i class="icon-line"></i></span></a></notempty>
+					<notempty name="akmallConfig.contact_whatsapp"><a target="_blank" href="https://api.whatsapp.com/send?phone={$akmallConfig.contact_whatsapp}"><span class="foot-icon whatsapp"><i class="icon-whatsapp"></i></span></a></notempty>
+					<notempty name="akmallConfig.contact_qq"><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$akmallConfig.contact_qq}&site=qq&menu=yes"><span class="foot-icon contact_qq"><i class="icon-qq"></i></span></a></notempty>
+				</div>
+				
+			</li>
+		</ul>
+	</div>
+</div>
+<div id="akmallUp"></div>
+<script type="text/javascript">
+seajs.use(['jquery/scrollup'], function(){ $.scrollUp({scrollName: 'akmallUp'}); });
+</script>

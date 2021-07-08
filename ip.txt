@@ -1,0 +1,62 @@
+2021-01-12 11:45:15parse ip 192.168.168.6
+2021-01-12 11:45:15parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:45:15获取参数
+2021-01-12 11:45:46parse ip 192.168.168.6
+2021-01-12 11:45:46parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:45:46获取参数
+2021-01-12 11:45:46parse ip 192.168.168.6
+2021-01-12 11:45:46parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:45:46获取参数m=Install
+2021-01-12 11:45:53parse ip 192.168.168.6
+2021-01-12 11:45:53parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:45:53获取参数m=Install
+2021-01-12 11:46:05parse ip 192.168.168.6
+2021-01-12 11:46:05parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:46:05获取参数m=Install
+2021-01-12 11:46:59parse ip 192.168.168.6
+2021-01-12 11:46:59parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:46:59获取参数m=Install
+2021-01-12 11:48:01parse ip 192.168.168.6
+2021-01-12 11:48:01parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:48:04获取参数m=Install
+2021-01-12 11:50:19parse ip 192.168.168.6
+2021-01-12 11:50:19parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:50:19获取参数m=Install
+2021-01-12 11:50:34parse ip 192.168.168.6
+2021-01-12 11:50:34parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:50:34获取参数m=Install
+2021-01-12 11:50:49parse ip 192.168.168.6
+2021-01-12 11:50:49parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:50:49获取参数m=Install
+2021-01-12 11:50:51parse ip 192.168.168.6
+2021-01-12 11:50:51parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:50:51获取参数m=Install
+2021-01-12 11:51:16parse ip 192.168.168.6
+2021-01-12 11:51:16parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:51:16获取参数m=Install
+2021-01-12 11:51:22parse ip 192.168.168.6
+2021-01-12 11:51:23parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:51:23获取参数m=Install
+2021-01-12 11:51:36parse ip 192.168.168.6
+2021-01-12 11:51:36parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:51:39获取参数m=Install
+2021-01-12 11:52:20parse ip 192.168.168.6
+2021-01-12 11:52:20parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:52:23获取参数m=Install
+2021-01-12 11:53:04parse ip 192.168.168.6
+2021-01-12 11:53:04parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:53:07获取参数m=Install
+2021-01-12 11:54:15parse ip 192.168.168.6
+2021-01-12 11:54:15parse ip result 192.168.168.6	本地局域网      
+2021-01-12 11:54:18获取参数m=Install
+2021-01-12 13:45:08parse ip 192.168.168.6
+2021-01-12 13:45:08parse ip result {"status":"fail","message":"private range","query":"192.168.168.6"}
+2021-01-12 13:46:46parse ip 112.111.185.249
+2021-01-12 13:46:48parse ip result {"status":"success","country":"China","countryCode":"CN","region":"FJ","regionName":"Fujian","city":"Putian","zip":"","lat":24.9878,"lon":118.4983,"timezone":"Asia/Shanghai","isp":"China Unicom CHINA169 Fujian Province Network","org":"","as":"AS4837 CHINA UNICOM China169 Backbone","query":"112.111.185.249"}
+2021-01-12 13:47:31获取参数
+2021-01-12 13:48:42parse ip 112.111.185.249
+2021-01-12 13:48:44parse ip result {"status":"success","country":"China","countryCode":"CN","region":"FJ","regionName":"Fujian","city":"Putian","zip":"","lat":24.9878,"lon":118.4983,"timezone":"Asia/Shanghai","isp":"China Unicom CHINA169 Fujian Province Network","org":"","as":"AS4837 CHINA UNICOM China169 Backbone","query":"112.111.185.249"}
+2021-01-12 13:48:44获取参数
+2021-01-12 13:48:44parse ip 112.111.185.249
+2021-01-12 13:48:45parse ip result {"status":"success","country":"China","countryCode":"CN","region":"FJ","regionName":"Fujian","city":"Putian","zip":"","lat":24.9878,"lon":118.4983,"timezone":"Asia/Shanghai","isp":"China Unicom CHINA169 Fujian Province Network","org":"","as":"AS4837 CHINA UNICOM China169 Backbone","query":"112.111.185.249"}
+2021-01-12 13:48:45获取参数m=Install

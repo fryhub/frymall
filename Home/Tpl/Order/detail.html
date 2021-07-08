@@ -1,0 +1,45 @@
+<extend name="Order/akmall" />
+<block name="body">
+<notempty name="akmallConfig.lazyload">
+<script type="text/javascript">
+seajs.use(['jquery/lazyload'], function() {
+	$(".akmall-detail-content img").lazyload({ placeholder : "__PUBLIC__/akmall/akmall.gif",effect : "fadeIn",threshold:500});
+});
+</script>
+</notempty>
+<notempty name="info.timer">
+<script type="text/javascript"> seajs.use(['akmall'],function(akmall) {  akmall.timer('#akmall-timer', '{$info.timer}'); })</script>
+<else />
+<script type="text/javascript">seajs.use(['jquery'],function($) {  $('#akmall-timer').html(''); })</script>
+</notempty>
+<div class="akmall-detail-wrap clearfix">
+	<div class="akmall-detail-content">
+		<notempty name="info.slideshow">
+		<div class="box box-image">
+			<div class="box-content">
+				<notempty name="info.slideshow">
+				<div class="newbanner">
+				  <div class="newflexslider">
+					<ul class="newslides">
+						<volist name=":explode(',',$info['slideshow'])" id="vo">
+						<li><img src="{$vo|imageUrl}" /></li>
+						</volist>
+					</ul>
+				  </div>
+				</div>
+				<script type="text/javascript">
+				seajs.use(['jquery/newflexslider'], function(){ $('.newflexslider').newflexslider({ directionNav: true, pauseOnAction: false,newslideshowSpeed:4000 });});
+				</script>
+				</notempty>
+			</div>
+		</div>
+		</notempty>
+		<div class="box akmallbox-1">
+		{$info.content}
+		{:W('Relate',array_merge($info,array('moduel'=>'Order')))} 
+		</div>
+	</div>
+	
+	<include file="Order/footbar" />
+</div>
+</block>

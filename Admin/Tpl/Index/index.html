@@ -1,0 +1,167 @@
+{:w("Main",array('module'=>MODULE_NAME,'action'=>ACTION_NAME))}
+<div class="layout-main">    
+    <div class="layout-block-header box overview-head">
+        <h2 class="overview-username">{$_SESSION.user.username}{:lang('comma_hello')}</h2>
+        <div id="OverviewOptimizeAdvice" style="line-height:2em;padding-top:10px;">
+            <p>{:lang('last_login_time_colon')}{$_SESSION.user.login_time}</p>
+            <p>{:lang('last_login_ip_colon')}{$_SESSION.user.login_ip}</p>
+			<p>当前版本：{:C('AKMALL_VERSION')}<span id="version"></span></p>
+			<eq name="_SESSION['user']['role']" value="admin">
+			<p>短信余额：<b class="alert" id="sms-balance">0</b></p>
+			<php>$update = file_exists('./Public/Database/update.lock');</php>
+			<notempty name="update">
+			<p><a class="btn btn-ok" href="{:U('Version/index')}">系统升级</a></p>
+			</notempty>
+			</eq>
+        </div>
+    </div>
+	<!--
+	<div class="layout-block-header box overview-head">
+        <h2 class="overview-username">akmall声明</h2>
+        <div id="OverviewOptimizeAdvice" style="font-size:14px;line-height:1.8em;padding-top:10px;">
+            <p>1、AK单页订单管理系统企业版，作者：<b>123456</b>（微信号），
+				官方网址：<a href="http://123456/" target="_blank">123456</a>
+			</p>
+			<p>2、在使用过程中，若发现bug或需要添加功能，请联系作者。</p>
+			<p>3、本系统仅供自己使用，禁止传播和倒卖！</p>
+        </div>
+    </div>
+	-->
+	
+	<div class="box clear-fix">   
+        <div class="ui-table">
+            <div class="ui-table-body ui-table-body-hover">
+                <table cellpadding="0" cellspacing="0" width="100%" >
+                    <thead>
+                        <tr class="ui-table-head">
+                            <th class="ui-table-hcell">今日统计</th>
+							<volist name="today" id="vo">
+                            <th class="ui-table-hcell">{$vo.name}</th>
+							</volist>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>数量</td>
+							<volist name="today" id="vo">
+                            <td>{$vo.quantity|intval}</td>
+							</volist>
+                        </tr>
+						<tr>
+                            <td>金额</td>
+                            <volist name="today" id="vo">
+                            <td>{$vo.price|number_format=2}</td>
+							</volist>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+	</div><!--.box-->
+	
+	<div class="box clear-fix">   
+        <div class="ui-table">
+            <div class="ui-table-body ui-table-body-hover">
+                <table cellpadding="0" cellspacing="0" width="100%" >
+                    <thead>
+                        <tr class="ui-table-head">
+                            <th class="ui-table-hcell">昨日统计</th>
+							<volist name="yesterday" id="vo">
+                            <th class="ui-table-hcell">{$vo.name}</th>
+							</volist>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>数量</td>
+							<volist name="yesterday" id="vo">
+                            <td class="ui-table-hcell">{$vo.quantity|intval}</td>
+							</volist>
+                        </tr>
+						<tr>
+                            <td>金额</td>
+                            <volist name="yesterday" id="vo">
+                            <td class="ui-table-hcell">{$vo.price|number_format=2}</td>
+							</volist>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+	</div><!--.box-->
+	
+	<div class="box clear-fix">   
+        <div class="ui-table">
+            <div class="ui-table-body ui-table-body-hover">
+                <table cellpadding="0" cellspacing="0" width="100%" >
+                    <thead>
+                        <tr class="ui-table-head">
+                            <th class="ui-table-hcell">最近七天</th>
+							<volist name="week" id="vo">
+                            <th class="ui-table-hcell">{$vo.name}</th>
+							</volist>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>数量</td>
+							<volist name="week" id="vo">
+                            <td class="ui-table-hcell">{$vo.quantity|intval}</td>
+							</volist>
+                        </tr>
+						<tr>
+                            <td>金额</td>
+                            <volist name="week" id="vo">
+                            <td class="ui-table-hcell">{$vo.price|number_format=2}</td>
+							</volist>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+	</div><!--.box-->
+	
+	<div class="box clear-fix">   
+        <div class="ui-table">
+            <div class="ui-table-body ui-table-body-hover">
+                <table cellpadding="0" cellspacing="0" width="100%" >
+                    <thead>
+                        <tr class="ui-table-head">
+                            <th class="ui-table-hcell">本月统计</th>
+							<volist name="month" id="vo">
+                            <th class="ui-table-hcell">{$vo.name}</th>
+							</volist>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>数量</td>
+							<volist name="month" id="vo">
+                            <td class="ui-table-hcell">{$vo.quantity|intval}</td>
+							</volist>
+                        </tr>
+						<tr>
+                            <td>金额</td>
+                            <volist name="month" id="vo">
+                            <td class="ui-table-hcell">{$vo.price|number_format=2}</td>
+							</volist>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+	</div><!--.box-->
+<script type="text/javascript">
+$(function(){
+	$.ajax({
+	   type: "GET",
+	   url: "{:U('Index/smsBalance')}",
+	   dataType: "json",
+	   success:function(data){
+			$('#sms-balance').html(data.data);
+			$('#sms-balance').html(data.balance);
+		}
+	});
+})
+</script>
+	{:W("Foot")}

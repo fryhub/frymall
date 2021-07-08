@@ -1,0 +1,42 @@
+/*
+ * 标题：AK单页订单管理系统企业版
+ * 作者：123456（微信号）
+ * 官方网址：123456
+ * *
+ * 警示信息：您可以复制使用本站静态文件（html/css/js/images），但请保留原创作者（微信号：123456）信息，谢谢。
+ */
+.ellipsis{overflow:hidden;}
+select{margin:3px 0;height:35px;}
+select,.akmall-input-text {text-indent:3px;line-height:25px;margin-right:1px;}
+.akmall-order{color:#666;font-size:14px;font-weight:normal;}
+.akmall-quantity-readonly{width:40px;}
+.akmall-content{padding:8px;}
+.akmall-brief{border-bottom:10px;}
+.akmall-brief img{max-width:100%;}
+.akmall-main{float:left;width: 66.66666666666666%;}
+.akmall-side{float:left;width: 33.33333333333333%;overflow:hidden;}
+.akmall-title{padding:8px;height:30px;font-size:25px;}
+.akmall-title .icon-cart,.akmall-title .icon-shipping{width:25px;height:25px;margin-right:3px;}
+.akmall-params{padding:5px;}
+.akmall-rows{padding-top:5px;}
+.rows-head{margin-bottom:3px;padding:3px 0;font-size:14px;}
+.akmall-group{padding-left:20px;line-height:25px;padding-right:10px;}
+.akmall-group-box{width: 15px;padding-top:4px;}
+.akmall-group-box input + label:after{border:none;}
+.akmall-quantity,.quantity-inc,.quantity-dec{width:25px;height:25px;font-size:20px;line-height:25px;}
+.akmall-quantity{padding:0 5px;width:40px;}
+.akmall-total-price{font-size:25px;}
+.akmall-alert{padding: 5px;*margin-top:3px;margin-bottom: 15px;border-radius: 4px;}
+.akmall-btn{padding: 10px;margin-bottom: 0;font-size: 20px;line-height: 20px;border-radius:4px;}
+.akmall-scroll li{padding:5px;}
+.akmall-scroll .akmall-date{float:right;font-size:12px;}
+.akmall-id-btn{margin-bottom:15px;}
+.rows-id-verify .rows-params *{float:left;}
+.akmall-badge{padding:2px 3px;border-radius:2px;font-size:12px;height:12px;line-height:12px;margin-left:2px;}
+
+.akmall-theme-thin .akmall-rows{padding-top:2px;}
+.akmall-theme-thin .rows-head{width:80px;}
+.akmall-theme-thin .rows-params{margin-left:80px;padding:0 5px;}
+.akmall-theme-thin .akmall-params.akmall-params-image{padding:5px;}
+.akmall-theme-thin select,.akmall-theme-thin  .akmall-input-text{border-width:1px;padding:0;height:25px;}
+.akmall-theme-thin .rows-id-params-select .rows-params{margin-left:80px;}

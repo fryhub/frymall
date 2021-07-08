@@ -1,0 +1,23 @@
+
+<notempty name="data">
+	<div class="newmain background">
+	  <h4 class="newtitle newproducts">{$data.title} / <span style="font-style: italic;font-weight: normal; font-size: 14px;">New Products</span></h4>
+	  <dl>
+		<volist name="data.list" id="vo">
+		<php>$type = $vo['is_hot']==1?'dt':'dd';</php>
+		<{$type} class="akmall-item-list"> 
+			<a href="{:U('Item/order',array('id'=>$vo['sn']))}" title="{$vo.name}" class="info">
+				<div class="img"><img src="<empty name="vo.thumb">{$vo.image|imageUrl}<else />{$vo.thumb|imageUrl}</empty>" class="lazy" /></div>
+			</a>
+			<div class="clear"></div>
+			<div class="newmain_text">
+				<h4>{$vo.name}</h4>
+				<em>{:lang('symbol')}<strong>{$vo.price}</strong></em>
+				<if condition="floatval($vo['original_price']) gt 0"><del>{$vo.original_price}</del></if>
+			</div>
+		</{$type}>
+		</volist>
+	  </dl>
+	  <div class="clear"></div>
+	</div>
+</notempty>

@@ -1,0 +1,83 @@
+/*
+ * 标题：AK单页订单管理系统企业版
+ * 作者：123456（微信号）
+ * 官方网址：123456
+ * *
+ * 警示信息：您可以复制使用本站静态文件（html/css/js/images），但请保留原创作者（微信号：123456）信息，谢谢。
+ */
+*{margin:0;padding:0;}
+body{margin:0;padding:0;background-attachment:fixed;background-size:cover;background-position:center;font:14px/1.5 "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", serif}
+h1{font-size:20px}
+h2{font-size:16px}
+a{color:#EB5F3E;text-decoration:none}
+a:hover{text-decoration:underline}
+.label{background:#EB5F3E;padding:5px 8px;border-radius:3px;font-size:12px;color:#fff;vertical-align:middle}
+.wrapper{background-color:#fff;max-width:750px;margin:0 auto}
+.header{padding:10px 20px;background: #000;border-bottom:1px solid #ccc;border-bottom:1px solid rgba(255, 255, 255, .1);color:#fff;text-align: center;}
+
+.akmall-page img{max-width:100%;}
+.akmall-page .box{margin:0;padding:0;background:#fff}
+.akmall-page .box a:hover{text-decoration:none}
+.akmall-page .box a:hover span{text-decoration:underline}
+.akmall-page .box a:hover .label{text-decoration:none}
+.akmall-page .box h2.title{margin:0;padding:5px 10px;border-bottom:1px solid #ccc;font-weight:normal}
+.akmall-page .box-image .box-content{text-align:center;}
+.akmall-page .box .box-content table.links{margin-top:-1px;width:100%;border-spacing:0;border-collapse:collapse}
+.akmall-page .box .box-content table.links td{padding:3px 3px 3px 10px;border:1px solid #ddd;border-left:0}
+.akmall-page .box .box-content table.links td:nth-child(2){border-left:1px solid #ddd;border-right:0}
+.akmall-page .box .box-content table.links td a{display:block}
+.footer{padding-bottom:40px;text-align:center}
+.footer p{padding:0 0 20px 0;font-size:12px}
+
+.akmall-submit{background: #1b3a72!important;}
+
+.akmall-side .akmall-title{background-position:-10px -55px;}
+
+
+.akmall-rows{margin-top:5px !important;}
+.akmall-theme-thin .rows-id-params .rows-head{display:block;}
+.akmall-theme-thin .rows-id-params .rows-params{margin-left:80px;}
+.akmall-theme-thin .rows-id-params .rows-params a{display:block;width:100%;color:#333 !important;background:none;border:none;line-height:22px;padding:0;}
+.akmall-theme-thin .rows-id-params .rows-params a img{display:none;}
+.akmall-theme-thin .rows-id-params .rows-params a:hover,.akmall-theme-thin .rows-id-params .rows-params a.active {color:#f60 !important;}
+
+.box-image{text-align:center;}
+
+.buy {width:100%; height:auto; background:#44361C; padding:5px 0 15px;text-shadow:none;text-align:center; overflow:hidden;
+-webkit-animation:bounceInkeep .3s .2s linear both;-moz-animation:bounceInkeep .3s .2s linear both;-o-animation:bounceInkeep .3s .2s linear both;font-size:16px;}
+.row1,.row2 {width:100%; height:auto;margin:0 auto;padding:0; clear:both;}
+.row2 {border-top:1px dotted #524524;border-bottom:1px dotted #524524; padding:10px 0; line-height:30px; margin-bottom:20px; overflow:hidden;}
+.row1 .strong { display:block;width:35%;float:right;font-size: 180%;color:#ff0;text-shadow:1px 1px 0px #000; line-height:60px;}
+.row1 ol {width:65%; height:inherit;margin:0;padding:0; overflow:hidden;list-style:none;}
+.row1 ol li {width:33%; float:right;color:#886536; line-height:30px; }
+.row1 ol li p{color:#9A9B74;}
+.row2 .strong {display:block;line-height:30px; height:30px;font-size:20px;color:#9A7C48;}
+.row2 .djs {line-height:30px; height:30px;margin:0;padding:0; color:#dd9;overflow:hidden;}
+.row2 .djs input {color:#D0740A;background:none;font-size:26px; text-align:right;}
+.baoyou {border-top: 1px dotted #524524;padding: 15px 0px;overflow: hidden;}
+.baoyou span{background: #3b82c3;padding: 4px 8px;color: #fff;border-radius: 3px;line-height: 18px;margin: 4px 2px;}
+
+.btn-buy{background-color:#3b82c3;display:block;font-size:1.5rem;width:96%;margin:5px auto; padding:10px 0; text-align:center;color:#fff;text-shadow:1px 1px 1px #333;border-radius:6px;}
+.akmall-timer{text-align:center; margin:0; font-size:14px;}
+.akmall-timer b{font-weight:bold; padding:0 ; color:#D0740A;font-size:25px;}
+
+.akmall-rows{margin-top:5px !important;}
+.akmall-theme-thin .rows-id-params .rows-head{display:block;}
+.akmall-theme-thin .rows-id-params .rows-params{margin-left:80px;}
+.akmall-theme-thin .rows-id-params .rows-params a{display:block;width:100%;color:#333 !important;background:none;border:none;line-height:22px;padding:0;}
+.akmall-theme-thin .rows-id-params .rows-params a img{display:none;}
+.akmall-theme-thin .rows-id-params .rows-params a:hover,.akmall-theme-thin .rows-id-params .rows-params a.active {color:#f60 !important;}
+.rows-id-params input {margin-right: 5px;}
+.akmall-group{display:block;}
+.akmall-group-box input{width:auto;height:auto;opacity:1;}
+.akmall-group-box input + label:after{display:none;}
+.akmall-group-box {left: 3px;top: 6px;}
+.akmall-foot-nav ul li a strong{background-size: 1.5rem 1.5rem;}
+.qq{background:url(weixin.png) 0 0 no-repeat;height:20px;}
+#akmallComments{padding-bottom:10px;}
+
+.akmall-timer strong{font-weight: bold;padding: 0;color: #66c33b;font-size: 25px;}
+.comment-title{display:none;}
+
+.rows-params .phone_area_code_s{background-color:#f7f7f7;height: 34px; line-height: 34px; padding: 0px 2%; text-align: center; width: 16%; display: inline-block; border: 1px solid #ccc;box-shadow: inset 0 1px 1px rgba(0,0,0,0.075); border-radius: 2px; font-size: 1.1rem;vertical-align: middle;}
+.rows-params .mobile, .rows-params .telphone{width:78%;margin-right: 0px;}

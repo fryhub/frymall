@@ -1,0 +1,73 @@
+<extend name="Order:akmall" />
+<block name="body">
+<div class="result">
+	<h1><empty name="order.status"><img src="__PUBLIC__/akmall/success.png"> {:lang('submit_success')}<else />{:lang('order_info')}</empty></h1>
+    <div class="innner order_div success">
+        <div class="order" style="min-height: calc(100vh - 244px);">
+			<eq name="order.status" value="3">
+				<php>$item = M('Item')->where('is_delete=0 and id='.$order['item_id'])->field('is_auto_send,send_content')->find();</php>
+				<notempty name="item.is_auto_send">
+				<div class="akmall-alert">
+					<span>{$item.send_content|nl2br}</span>
+				</div>
+				</notempty>
+			</eq>
+					
+            <ul>
+				<li><label>{:lang('pay_status_colon')}</label><span style="color:#f00">{$pay['orderInfo']}</span></li>
+				<li><label>{:lang('order_number_colon')}</label><span>{$order.order_no}</span></li>
+				<li><label>{:lang('item_name_colon')}</label><span>{$order.item_name}</span></li>
+				<li><label>{:lang('order_price_colon')}</label><span><b>{:lang('symbol')}{$order['total_price']}</b></span></li>
+				
+			<div class="result_info">{$akmallConfig.result_info}</div>
+        </div>
+		
+        <div class="foot">
+            <a href="{$redirectUrl}" class="foot_btn">{:lang('goback')}</a>
+			<p>{$akmallConfig.footer}</p>
+        </div>
+    </div>
+</div>
+<script>
+pushHistory();  
+window.addEventListener("popstate", function(e) {  
+	window.location.href = "{$redirectUrl}";
+	pushHistory();  
+}, false);  
+function pushHistory() {  
+	var state = { title: "title", url: "#" };  
+	window.history.pushState(state, "title", "#");  
+}
+</script>
+<if condition="$order['payment'] eq 3 && $order['status'] eq 0">
+<script>
+setInterval(function(){ window.location.reload();},2000);
+</script>
+</if>
+<notempty name="akmallConfig.mail_send">
+<script type="text/javascript">
+seajs.use(['jquery'],function($){ var order_id = "{$order['id']}";$.ajax({ url:"{:C('akmall_ROOT')}index.php?m=Api&a=send&order_id="+order_id,timeout:1000 });});
+</script>
+</notempty>
+
+<if condition="session('fbpid')">
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+{:session('pixel_fbq')}
+fbq('track', 'PageView');
+fbq('track', 'Purchase', {
+	content_type:'product',
+	content_ids:['{$order.item_id}'],
+	value: '{$order['total_price']|floatval}',
+	currency: '{:L("currency")}'
+});
+</script>
+{:session('pixel_noscript')}
+<!-- End Facebook Pixel Code -->
+</if>
+</block>

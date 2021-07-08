@@ -1,0 +1,47 @@
+
+<div class='akmall-remark'>{$info['remark']}</div>
+<div class="akmall-footer">{$akmallConfig.footer}</div>
+<php>
+$showNav = (int)$template['extend']['bottom_nav'];
+if(!empty($showNav)){
+	if($showNav==1){ $style = "style='width:100%'";
+	}elseif($showNav==2){ $style = "style='width:49%'";
+	}else{ $style = '';}
+	$html = '<div class="akmall-foot-nav"><a class="akmall-up" href="#">'.lang('top').'</a><ul>';
+	for($i=1;$i<=$showNav;$i++){
+		$nav = explode('||',$template['extend']['bottom_nav_list'][$i]);
+		$class = isset($nav[2])?'icon '.$nav[2]:'';
+		$html .= '<li class="foot-nav-'.$i.'" '.$style.'><a href="'.$nav[1].'"><strong class="'.$class.'">'.$nav[0].'</strong></a></li>';
+	}
+	echo $html.'</ul></div>';
+}
+</php>
+
+<script type="text/javascript">
+seajs.use(['akmall','jquery/form','lang'],function(akmall){
+	window.akmall = akmall;
+	akmall.quantity(0);
+	var btnSubmit = $('.akmall-submit');
+	$('#akmallForm').ajaxForm({
+		cache: true,
+		timeout: 50000,
+		dataType: 'json',
+		error:function(){ layer.closeAll(); alert(lang.ajaxError); btnSubmit.attr('disabled',false).val(lang.submit); },
+		beforeSubmit:function(){
+			if(checkForm('#akmallForm')==false) return false;
+			layer.closeAll();layer.load();
+			btnSubmit.attr('disabled',true).val(lang.loading);
+		},
+		success:function(data){
+			layer.closeAll();layer.closeAll();
+			if(data.status=='1'){
+				var redirect = "{:U('Order/pay',array('order_no'=>'__orderNo__'))}";
+				top.window.location.href = redirect.replace('__orderNo__',data.data.order_no);
+			}else{
+				btnSubmit.attr('disabled',false).val(lang.submit);
+				layer.msg(data.info);
+			}
+		}
+	});
+});
+</script>

@@ -1,0 +1,115 @@
+<extend name="Order:akmall" />
+<block name="body">
+<div class="result">
+	<h1><empty name="order.status"><img src="__PUBLIC__/akmall/success.png"> {:lang('submit_success')}<else />{:lang('order_info')}</empty></h1>
+    <div class="innner order_div success">
+        <div class="order" style="min-height: calc(100vh - 244px);">
+			<eq name="order.status" value="3">
+				<php>$item = M('Item')->where('is_delete=0 and id='.$order['item_id'])->field('is_auto_send,send_content')->find();</php>
+				<notempty name="item.is_auto_send">
+				<div class="akmall-alert">
+					<span>{$item.send_content|nl2br}</span>
+				</div>
+				</notempty>
+			</eq>
+					
+            <ul>
+				<neq name="order.payment" value="1">
+				<notempty name="order.status">
+				<li><label>{:lang('order_status_colon')}</label><span><php>$status=C('ORDER_STATUS');</php>{$status[$order['status']]}</span></li>
+				</notempty>
+				</neq>
+				<li><label>{:lang('order_number_colon')}</label><span>{$order.order_no}</span></li>
+				<li><label>{:lang('item_name_colon')}</label><span>{$order.item_name}</span></li>
+				<notempty name="order.item_params">
+				<php>$params_name = getFields("Item","params_name",$order['item_id']);</php>
+				<li>
+					<label><empty name="params_name">{:lang('itemPackage_colon')}<else />{$params_name}{:lang('colon')}</empty></label>
+					<php>
+						$item_params = explode('#',$order['item_params']);
+						$show_params =  array();
+						foreach($item_params as $params){
+							$param = explode('||',$params);
+							$show_params[] = $param[0];
+						}
+					</php>
+					<span>{:implode('#',$show_params)}</span>
+				</li>
+				</notempty>
+				<php>$extends = json_decode($order['item_extends'],true);</php>
+				<notempty name="extends">
+					<volist name="extends" id="vo">
+					<li>
+						<php>
+						if(strstr($key,'||')){
+							$key= explode('||',$key);
+							$key= $key[0];
+						}
+						</php>
+						<label>{$key}{:lang('colon')}</label>
+						<php>
+						if(is_array($vo)){
+							$ret = array();
+							foreach($vo as $v){
+								$rs = explode('||',$v);
+								$ret[] = $rs[0];
+							}
+							$ret = implode('#',$ret);
+						}elseif(strstr($vo,'||')){
+							$vo= explode('||',$vo);
+							$ret= $vo[0];
+						}else{
+							$ret = $vo;
+						}
+						</php>
+						<span>{$ret}</span>
+					</li>
+					</volist>
+				</notempty>
+				<notempty name="options">
+				<php>$opt=C('TEMPLATE_OPTIONS');$payment = C('PAYMENT');</php>
+				<volist name="options" id="name">
+					<php>if(in_array($name,array('verify','code','coupon','product','extends'))){continue;}</php>
+					<li>
+						<label><php>echo $opt[$name]['name'];</php>{:lang('colon')}</label>
+						<span>
+							<switch name="name">
+								<case value="mobile">{$order['mobile']|substr=0,3}****{$order['mobile']|substr="-3"}</case>
+								<case value="price"><b>{:lang('symbol')}{$order['total_price']}</b></case>
+								<case value="payment"><php>echo $payment[$order[$name]]['name'];</php></case>
+								<default />{$order[$name]}
+							</switch>
+						</span>
+					</li>
+				</volist>
+				<else />
+					<!--li>{:lang('paymentSubmit')}</li-->	
+				</notempty>
+			</ul>
+			<div class="result_info">{$akmallConfig.result_info}</div>
+        </div>
+		
+        <div class="foot">
+            <a href="javascript:history.go(-1)" class="foot_btn">{:lang('goback')}</a>
+			<p>{$akmallConfig.footer}</p>
+        </div>
+    </div>
+</div>
+<!-- <script>
+pushHistory();  
+window.addEventListener("popstate", function(e) {  
+	window.location.href = "{$redirectUrl}";
+	pushHistory();  
+}, false);  
+function pushHistory() {  
+	var state = { title: "title", url: "#" };  
+	window.history.pushState(state, "title", "#");  
+}
+</script> -->
+<notempty name="akmallConfig.mail_send">
+<script type="text/javascript">
+seajs.use(['jquery'],function($){ var order_id = "{$order['id']}";$.ajax({ url:"{:C('akmall_ROOT')}index.php?m=Api&a=send&order_id="+order_id,timeout:1000 });});
+</script>
+</notempty>
+
+</block>

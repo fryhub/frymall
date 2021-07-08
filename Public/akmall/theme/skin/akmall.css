@@ -1,0 +1,37 @@
+/*
+ * 标题：AK单页订单管理系统企业版
+ * 作者：123456（微信号）
+ * 官方网址：123456
+ * *
+ * 警示信息：您可以复制使用本站静态文件（html/css/js/images），但请保留原创作者（微信号：123456）信息，谢谢。
+ */
+
+select, .akmall-input-text{padding:0.3rem;width: 97%;}
+.akmall-title{display:none;}
+.akmall-box-params{position:relative;}
+.akmall-order .rows-head{left:10px;font-weight:normal;border-bottom:none;padding:2px 0;}
+.akmall-order .rows-params{line-height:2rem;}
+
+.akmall-side .akmall-title{background-position:-10px -55px;}
+.akmall-side{margin-left:-1px;border-left:1px solid #0C0;}
+.akmall-side.akmall-full-row{border-top:4px solid #0C0;}
+
+
+.rows-id-params .rows-params a{padding:2px 15px;border-radius:5px;}
+.rows-id-params .rows-head,.rows-id-extends .rows-head{float:none;position:relative;}
+.rows-id-params .rows-params,.rows-id-extends .rows-params{margin-left:0;padding-left:0;}
+.akmall-query .rows-params{margin:auto;}
+.rows-id-extends .akmall-group{margin-right:5px;padding:2px 15px;border:1px solid #ccc;border-radius:5px;cursor:pointer;background:#fff;transition: all 0.3s linear 0s;}
+.rows-id-extends .akmall-group-box{display:none;}
+
+.akmall-order{border:none;}
+.akmall-order-wrap{padding: 5px;background:#f5f5f5;}
+.akmall-box{margin:0 5px 10px 5px;padding:10px;border-radius: 5px;box-shadow: 0 1px 2px 2px #E4E4E4;background: #fafafa;}
+.akmall-side{border:none !important;margin;0;}
+.akmall-delivery{margin:10px 0;padding:10px 5px;}
+
+.akmall-params.active{background-color:#f60 !important;}
+
+.akmall-box-notice{float:right;width: 30%;padding-top:10px;padding-bottom:01px;}
+.akmall-box-notice .akmall-side{width:100%;}
+.akmall-full-row.akmall-box{float:none;width:100%;margin: 0; padding: 0;}

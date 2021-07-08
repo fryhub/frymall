@@ -1,0 +1,19 @@
+/*
+ * 标题：AK单页订单管理系统企业版
+ * 作者：123456（微信号）
+ * 官方网址：123456
+ * *
+ * 警示信息：您可以复制使用本站静态文件（html/css/js/images），但请保留原创作者（微信号：123456）信息，谢谢。
+ */
+
+.akmall-order .akmall-rows{position:relative;padding-top:.2rem;}
+.akmall-order .rows-head{position:absolute;left:0;width:5rem;font-weight:normal;border-bottom:none;padding:2px 0;text-align:right;}
+.akmall-order .rows-params{padding-left:5.5rem;line-height:2rem;}
+.akmall-order .akmall-params{border:1px solid #ccc;padding:0 .2rem;}
+.akmall-order .akmall-params.akmall-params-image{padding:.3rem;}
+/* .akmall-order select,.akmall-order  .akmall-input-text{border-width:1px;padding:0;height:2rem;} */
+textarea.akmall-input-text{height:auto !important;}
+.akmall-order .akmall-submit{width:100%;}
+.akmall-order .rows-id-params.rows-id-params-select .rows-head{display:block;}
+.akmall-order .rows-id-params.rows-id-params-select .rows-params{margin-left:5.5rem;}
+.akmall-title{display:none;}

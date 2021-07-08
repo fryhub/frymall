@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html <if condition=" C('DEFAULT_LANG') EQ 'arab-ae' OR C('DEFAULT_LANG') EQ 'arab-sa' OR C('DEFAULT_LANG') EQ 'arab-jor' OR C('DEFAULT_LANG') EQ 'arab-omn' ">dir="rtl"</if>>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><notempty name="info.name">{$info.name} -</notempty> {$akmallConfig.title}</title>
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="yes" name="apple-touch-fullscreen"/>
+<meta content="telephone=no" name="format-detection"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta name="MobileOptimized" content="640">
+<meta name="description" content="<notempty name="info.brief">{$info.brief}<else />{$akmallConfig.description}</notempty>">
+<meta name="keywords" content="<notempty name="info.name">{$info.name}|</notempty>{$akmallConfig.keywords}">
+<meta name="author" content="{:lang('author')}">
+<link rel="shortcut icon" href="__PUBLIC__/Assets/img/akmall.ico" />
+<link href="__PUBLIC__/akmall/Item/style.css?v={$Think.const.AKMALL_VERSION}" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/akmall/seajs/seajs/sea.js"></script>
+<script type="text/javascript">
+var akmallHost = "{$akmallHost}",akmallRoot = "{:C('akmall_ROOT')}",lang="{:C('DEFAULT_LANG')}";
+seajs.config({ base: '__PUBLIC__/akmall/seajs/',alias: {'jquery': 'jquery/jquery','akmall': 'akmall/akmall','lang': 'akmall/lang-'+lang}});
+seajs.use(['jquery'], function($){ 
+$('.search_button').click(function(){ $('.search_submit').show(); $('.search_input').show().animate({width:'100%'}).focus();})
+$('.search_input').blur(function(){ $(this).animate({width:'0'},500,function(){ $(this).hide();$('.search_submit').hide();}); })
+});
+</script>
+<notempty name="akmallConfig.theme_color">
+<style> 
+	.header,.btn{background-color: #<php>echo $akmallConfig['theme_color'];</php>;}
+	.tabs-nav a.active {color:#<php>echo $akmallConfig['theme_color'];</php>;border-bottom-color:#<php>echo $akmallConfig['theme_color'];</php>;}
+	.side-menu a.active{border-left-color:#<php>echo $akmallConfig['theme_color'];</php>;}
+	.btn-buy,.akmall-foot-nav{background-color:#<php>echo $akmallConfig['theme_color'];</php> !important;}
+	.booking-now,.akmall-btn,.akmall-plug .price,.akmall-badge{background-color: #<php>echo $akmallConfig['theme_color'];</php> !important;border-color: #<php>echo $akmallConfig['theme_color'];</php> !important;}
+	.akmall-btn.active {color:#<php>echo $akmallConfig['theme_color'];</php>;border-bottom-color:#<php>echo $akmallConfig['theme_color'];</php>;}
+</style>
+</notempty>
+
+<if condition="session('fbpid')">
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+{:session('pixel_fbq')}
+fbq('track', 'PageView');
+fbq('track', 'ViewContent');
+</script>
+{:session('pixel_noscript')}
+<!-- End Facebook Pixel Code -->
+</if>
+<notempty name="akmallConfig.head_content">{$akmallConfig.head_content}</notempty>
+</head>
+
+<body class="{$akmallConfig.system_theme} <if condition=" C('DEFAULT_LANG') EQ 'arab-ae' OR C('DEFAULT_LANG') EQ 'arab-sa' OR C('DEFAULT_LANG') EQ 'arab-jor' OR C('DEFAULT_LANG') EQ 'arab-omn' ">arab</if>">
+
+<notempty name="akmallConfig.notice"><div class="akmallAlert"><a class="close" onclick="$('.akmallAlert').slideUp(500);">×</a>{$akmallConfig.notice}</div></notempty>
+<notempty name="akmallConfig.show_header">
+<div class="header">
+	<div class="back"><a href="javascript:history.go(-1)"><img src="__PUBLIC__/akmall/Item/icon-goback.svg"></a></div> 
+	<div class="wrap">
+		<a class="logo" href="{:U('Item/index')}"><img src="<empty name='akmallConfig.logo'>__PUBLIC__/Assets/img/logo.png<else />{$akmallConfig.logo|imageUrl}</empty>" alt="{$akmallConfig.title}" /></a>
+	</div>
+	<div class="search">
+		<form method="get" action="{:U('Item/category')}" class="searchform">
+			<input type="hidden" name="m" value="Item">
+			<input type="hidden" name="a" value="category">
+			<input type="text" name="kw" class="search_input" value="{$_GET['kw']|trim}" placeholder="{:lang('search')}">
+			<button type="button" class="search_button"></button>
+			<button type="submit" class="search_submit"></button>
+		</form>
+	</div> 
+</div>
+
+<else />
+<style>.tab_menu{top:0;}.subnav{display:none;}</style>
+</notempty>
+

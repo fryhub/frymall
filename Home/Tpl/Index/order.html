@@ -1,0 +1,221 @@
+<extend name="Order:akmall" />
+<block name="css">
+<link href="{:C('akmall_ROOT')}Public/akmall/pc/akmall.css?v={$Think.const.AKMALL_VERSION}" rel="stylesheet">
+<notempty name="akmallConfig.lazyload">
+<script type="text/javascript">
+seajs.use(['jquery/lazyload'], function() {
+	$(".akmall-detail-content img").lazyload({ placeholder : "{:C('akmall_ROOT')}Public/akmall/akmall.gif",effect : "fadeIn",threshold:500});
+});
+</script>
+</notempty>
+<notempty name="info.timer">
+<script type="text/javascript">seajs.use(['akmall','jquery/form','lang'],function(akmall) { akmall.timer('#akmall-timer', '{$info.timer}'); })</script>
+</notempty>
+</block>
+<block name="body">
+<include file="Index:header" />
+
+<div class="mainwidth" id="akmall-show-bar">
+	<div class="akmall-detail-header clearfix">
+		<div class="mainwidth header-wrap">
+			<php>$buyNow = strstr($info['content'],'akmallOrder')?'#akmallOrder':U('Order/index',array('id'=>$info['sn'],'track'=>'purchase'));</php>
+			<a class="booking-now CartButton" href="{$buyNow}">{:lang('bookingNow')}</a>
+			<notempty name="info.image"><h1 class="title"><img src="{$info.image|imageUrl}"></h1></notempty>
+			<dl>
+				<dt class="ellipsis">{$info.name}
+					<notempty name="info.tags"><volist name=":explode('#',$info['tags'])" id="vo"><span class="akmall-badge">{$vo}</span></volist></notempty>
+				</dt>
+				<dd class="ellipsis">{$info.brief}</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+
+<!--修改pc前台内容-->
+	<div class="akmall-page">
+		
+		<notempty name="info.slideshow">
+		<div class="box box-image">
+			<div class="newbanner">
+			  <div class="newflexslider">
+				<ul class="newslides">
+					<volist name=":explode(',',$info['slideshow'])" id="vo">
+					<li><img src="{$vo|imageUrl}" /></li>
+					</volist>
+				</ul>
+			  </div>
+			</div>
+			<script type="text/javascript">
+			seajs.use(['jquery/newflexslider'], function(){ $('.newflexslider').newflexslider({ directionNav: true, pauseOnAction: false,newslideshowSpeed:4000 });});
+			</script>
+		</div>
+		</notempty>
+		
+		<div class="box akmallbox-1">
+			<!--<h2 class="title">{:lang('purchase')}</h2>-->
+			<div class="box-content">
+				<div class="akmall-plug clearfix">
+					<div class="price" <empty name="info.timer">style="width:100%;"</empty>>
+						<span class="symbol">{:lang('symbol')}</span>
+						<span class="current-price">{$info.price|floatval}</span>
+						<span class="group">
+							<if condition="floatval($info['original_price']) gt 0">
+							<del class="original-price">{:lang('symbol')}{$info.original_price}</del>
+							<else /><span class="original-price" style="height:10px;">&nbsp;</span></if>
+							<notempty name="info.salenum"><span class="salenum">{:lang('sold')}{$info.salenum}</span></notempty>
+						</span>
+					</div>
+					<notempty name="info.timer">
+					<div class="timer">
+						<p class="tt">{:lang('countdown')}</p>
+						<div id="akmall-timer" class="akmall-timer">
+						<span class="akmallDay"><strong>0</strong></span><span class="akmallHour"><strong>00</strong></span><span>:</span><span class="akmallMinute"><strong>00</strong></span><span>:</span><span class="akmallSecond"><strong>00</strong></span>
+						</div>
+						<script type="text/javascript">
+							seajs.use(['akmall'],function(akmall) {
+								akmall.timer('#akmall-timer', '{$info.timer}');
+							})
+						</script>
+					</div>
+					</notempty>
+				</div>
+				
+				<div class="akmall-content-title">
+					<h1>{$info.name}</h1>
+					<p>{$info.brief}</p>
+				</div>
+				<div class="baoyou">
+					<span class="by">{:lang('freeShipping')}</span>
+					<span class="huo">{:lang('cashOnDelivery')}</span>
+					<span class="tui">{:lang('refund')}</span>
+				</div>
+				<div class="gou CartButton">
+					<php>$buyNow = strstr($info['content'],'akmallOrder')?'#akmallOrder':U('Order/index',array('id'=>$info['sn'],'track'=>'purchase'));</php>
+					<a href="{$buyNow}">{:lang('buyNow')}</a>
+				</div>
+				<notempty name="akmallConfig.contact_tel"><div class="contact tel"><i class="icon-tel"></i><a href="tel:{$akmallConfig.contact_tel}">{:lang('BuybyMobile')}{$akmallConfig.contact_tel}</a></div></notempty>
+				<notempty name="akmallConfig.contact_phone"><div class="contact phone"><i class="icon-phone"></i><a href="sms:{$akmallConfig.contact_phone}">{:lang('BuybySMS')}{$akmallConfig.contact_phone}</a></div></notempty>
+				<notempty name="akmallConfig.contact_facebook"><div class="contact facebook"><i class="icon-facebook"></i><a target="_blank" href="{$akmallConfig.contact_facebook}">{:lang('FacebookPage')}</a></div></notempty>
+				<notempty name="akmallConfig.contact_messenger"><div class="contact messenger"><i class="icon-messenger"></i><a target="_blank" href="{$akmallConfig.contact_messenger}">{:lang('Messenger')}</a></div></notempty>
+				<notempty name="akmallConfig.contact_line"><div class="contact line"><i class="icon-line"></i><a target="_blank" href="{$akmallConfig.contact_line_url}">{:lang('Line')}{$akmallConfig.contact_line}</a></div></notempty>
+				<notempty name="akmallConfig.contact_whatsapp"><div class="contact whatsapp"><i class="icon-whatsapp"></i><a target="_blank" href="https://api.whatsapp.com/send?phone={$akmallConfig.contact_whatsapp}">{:lang('WhatsApp')}{$akmallConfig.contact_whatsapp}</a></div></notempty>
+				<notempty name="akmallConfig.contact_qq"><div class="contact contact_qq"><i class="icon-qq"></i><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$akmallConfig.contact_qq}&site=qq&menu=yes">{:lang('contactQQ')}{$akmallConfig.contact_qq}</a></div></notempty>
+				<br />
+				
+			</div>
+		</div>
+	</div>
+<!--修改pc前台内容-->
+
+<div class="container">
+	<div class="mainwidth">
+
+
+
+
+    <script type="text/javascript">
+		seajs.use(['jquery'], function() {
+			$(window).scroll(function(){
+				var winHeight = $(this).height(),orderTop = $('.akmall-order').offset().top,docTop = $(document).scrollTop(),nav=$('.akmall-foot-nav'),navHeight=nav.height();
+				if(docTop+winHeight/2>=orderTop){ nav.slideUp(); }else{ nav.slideDown(); }
+			})
+			var elm = $('#akmall-show-bar'); 
+			var startPos = $(elm).offset().top; 
+			$.event.add(window, "scroll", function() { 
+				var p = $(window).scrollTop(); 
+				if(((p) > startPos)){ elm.addClass('akmall-fixed'); }else{ elm.removeClass('akmall-fixed'); }
+			}); 
+		});
+		</script>
+		<div class="akmall-detail-wrap clearfix">
+			<div class="akmall-detail-content">{$info.content}</div>
+			
+			{:W('Relate',array_merge($info,array('moduel'=>'Index')))}
+		</div>
+	</div>
+</div>
+
+<!-- Facebook Pixel Code -->
+<!-- 触发AddToCart事件 -->
+<script type='text/javascript'>
+	var button = document.getElementsByClassName('CartButton');
+	var i;
+	var m = 1;//加一个判断变量 让事件只触发一次
+	for (i = 0; i < button.length; i++) {
+		button[i].addEventListener(
+		'click', 
+		function() { 
+			if(m == 1){
+				fbq('track', 'AddToCart');
+				m = 0;
+			}
+		},
+		false
+		);
+	}
+</script>
+<!-- 触发AddPaymentInfo事件 -->
+<script type="text/javascript">
+var button = document.getElementsByClassName('akmall-input-text');
+	var i;
+	var n = 1;//加一个判断变量 让事件只触发一次
+	for (i = 0; i < button.length; i++) {
+		button[i].addEventListener(
+		'change', 
+		function() { 
+			if(n == 1){
+				fbq('track', 'AddPaymentInfo');
+				n = 0;
+			}
+		},
+		false
+		);
+	}
+  
+</script>
+<!-- End Facebook Pixel Code -->
+<script type="text/javascript">
+seajs.use(['akmall','jquery/form','lang'],function(akmall){
+	window.akmall = akmall;
+	akmall.quantity(0);
+	var btnSubmit = $('.akmall-submit');
+	$('#akmallForm').ajaxForm({
+		timeout: 50000,
+		dataType: 'json',
+		error:function(){ layer.closeAll(); alert(lang.ajaxError); btnSubmit.attr('disabled',false).val(lang.submit); },
+		beforeSubmit:function(){
+			if(checkForm('#akmallForm')==false) return false;
+			layer.closeAll();layer.load();
+			btnSubmit.attr('disabled',true).val(lang.loading);
+		},
+		success:function(data){
+			<if condition="session('fbpid')">
+				fbq('track', 'InitiateCheckout');
+			</if>
+			layer.closeAll();layer.closeAll();
+			if(data.status=='1'){
+				{$info.javascript}
+				<if condition="session('fbpid')">
+				fbq('track', 'Purchase', 
+					{
+					value: data.data.total_price,
+					currency: '{:lang("currency")}',
+					}
+				);
+				</if>
+				var redirect = "{:U('Order/pay',array('order_no'=>'__orderNo__'))}";
+				top.window.location.href = redirect.replace('__orderNo__',data.data.order_no);
+			}else{
+				btnSubmit.attr('disabled',false).val(lang.submit);
+				layer.msg(data.info);
+			}
+		}
+	});
+});
+</script>
+</block>
+
+<block name="foot">
+    <div class='akmall-remark'>{$info['remark']}</div>
+    <include file="Index:footer" />
+</block>

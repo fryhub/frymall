@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<link href="__PUBLIC__/Assets/css/esui.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/Assets/css/union.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/Assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Assets/js/jquery.form.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Assets/js/jscolor.min.js"></script>
+<style>
+.info-table th, .info-table td{padding:3px 5px;}
+</style>
+</head>
+<body>
+<div class="layout-main">    
+    <div class="box clear-fix">
+		<form method="post" action="{:U('Item/qrcode')}" id="ajaxform" enctype="multipart/form-data">
+		<input type="hidden" name="id" value="{$info.id}" />
+		<input type="hidden" name="user_id" value="{$_SESSION.user.id}" />
+		<table class="info-table">
+			<tbody>
+				
+				<tr>
+					<td style="width:200px">
+						<h2 style="padding-bottom:10px;text-align:center">二维码推广</h2>
+						<div style="display:inline-block;padding:2px;border:5px solid #000;" id="qrcode">
+							<!--img id="qrcode" width="180" src="{:C('akmall_ROOT')}Api/qrcode.php?size=8&margin=0&data={$url}"-->
+						</div>
+					</td>
+					<td>
+						<style>
+						.akmall-text p{margin:3px 0;}
+						.akmall-text label{float:left;display:inline-block;width:70px;}
+						.akmall-text .ui-text{height:35px;}
+						</style>
+						<div class="akmall-text" style="text-align:left">
+						<p>
+							<label><b>域名集合：</b></label>
+							<select name="domain" id="domain" class="ui-text">
+								<volist name="domain_set" id="vo">
+									<option value="{$vo}" >{$vo}</option>
+								</volist>
+							</select>
+						</p>
+						<p>
+							<label><b>链接模式：</b></label>
+							<select name="link" id="link" class="ui-text">
+								<option value="1">动态链接</option>
+								<option value="2">静态链接</option>
+								<option value="3">短链接</option>
+								<option value="4">单页绑定域名</option>
+							</select>
+							
+							<label style="float:none;margin-left:85px;"><b>推广渠道：</b></label>
+							<input name="channel_id" id="channel_id"  class="ui-text">
+						</p>
+						<p>
+							<label><b>推广链接：</b></label>
+							<input name="url" id="url" readonly class="ui-text" size="58" type="text" value="{$url[0]|urldecode}"><a id="url-link" href="{$url[0][1]|urldecode}" target="_blank">【预览】</a>
+						</p>
+						<p>
+							<label>动态链接：</label>
+							<input name="url_1" id="url_1" readonly class="ui-text" size="58" type="text" value="{$url[0][1]|urldecode}"><a id="url-link" href="{$url[0][1]|urldecode}" target="_blank">【预览】</a>
+						</p>
+						<p>
+							<label>静态链接：</label>
+							<input name="url_2" id="url_2" readonly class="ui-text" size="58" type="text" value="{$url[0][2]|urldecode}"><a id="url-link" href="{$url[0][2]|urldecode}" target="_blank">【预览】</a>
+						</p>
+						<p>
+							<label>短链接：</label>
+							<input name="url_3" id="url_3" readonly class="ui-text" size="58" type="text" value="{$url[0][3]|urldecode}"><a id="url-link" href="{$url[0][3]|urldecode}" target="_blank">【预览】</a>
+						</p>
+						<p>
+							<label>绑定域名：</label>
+							<input name="url_4" id="url_4" readonly class="ui-text" size="58" type="text" value="{$url[0][4]|urldecode}"><a id="url-link" href="{$url[0][4]|urldecode}" target="_blank">【预览】</a>
+						</p>
+						<!-- <p>
+							<label>form调用：</label>
+							<textarea name="using" id="using" class="input-textarea" cols="80" rows="4"  style="width:455px;background:#f4f4f4">{$form}</textarea>
+							<a href="{$host}index.php?m=Lite&id={$info.sn}&uid={$_SESSION['user']['id']}" target="_blank">【预览】</a>
+						</p> -->
+						<p>
+							<label>iframe调用</label>
+							<textarea name="using" id="using" class="input-textarea" cols="80" rows="3"  style="width:455px;background:#f4f4f4"><iframe id="akmallIframe" name="akmallIframe" src="{$host}index.php?m=Order&id={$info.sn}&uid={$_SESSION['user']['id']}" width="100%" height="100%" scrolling="no" frameborder="0" allowtransparency="true" marginwidth="0" marginheight="0"></iframe></textarea>
+							<a href="{$host}index.php?m=Order&id={$info.sn}&uid={$_SESSION['user']['id']}" target="_blank">【预览】</a>
+						</p>
+		
+						
+						</div>
+					</td>
+				</tr>
+		
+			</tbody>
+		</table>
+		</form>
+    </div><!--.box-->
+<script type="text/javascript" src="__PUBLIC__/Assets/js/qrcode.min.js"></script>	
+<script type="text/javascript">
+$(function(){
+    $('#ajaxform').ajaxForm({
+        success:function(data){ 
+			parent.$.alert('保存成功',1);
+		},
+        dataType: 'json'
+    });
+});
+
+function addUser(){
+	top.location.href="{:U('User/add')}";
+}
+$(function(){
+	build();
+    $('#link').on('change',function(){ build(); })
+    $('#domain').on('change',function(){ build(); })
+	$('#channel_id').on('keyup',function(){ build(); })
+});
+
+function build(argv){
+	var link = $('#link').val();
+	var domain = $('#domain').val();
+	var acid = $('#channel_id').val();
+	
+	if(link==1){
+		var url = "{$url[1][1]|urldecode}";
+			url = "http://"+domain+url;
+		if(acid){ url += "&gzid="+acid; }	
+	}else if(link==2){
+		var url = "{$url[1][2]|urldecode}";
+			url = "http://"+domain+url;
+		if(acid){ url += "&gzid="+acid; }	
+	}else if(link==3){
+		var url = "{$url[1][3]|urldecode}";
+			url = "http://"+domain+url;
+		if(acid){ url += "&gzid="+acid; }	
+	}else{
+		var url = "{$url[1][4]|urldecode}";
+		if(acid){ url += "?gzid="+acid; }	
+		$.get("{$url[1][1]|urldecode}&buildHtml=H5");
+	}
+	
+	//$('#qrcode').attr('src',"{:C('akmall_ROOT')}Api/qrcode.php?size=6&margin=0&data="+encodeURIComponent(url));
+	$('#qrcode').html('');
+	new QRCode(document.getElementById('qrcode'), {text:url,width:200,height:200});
+
+	$('#url').val(url);
+	$('#url-link').attr('href',url);
+	
+		
+}
+
+</script>   
+
+</body>
+</html>

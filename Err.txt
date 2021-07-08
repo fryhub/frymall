@@ -1,0 +1,12 @@
+array (
+  'status' => 0,
+  'message' => '无效手机',
+)2021-04-20 01:47:07pm
+array (
+  'status' => 0,
+  'message' => '请选择省份',
+)2021-04-21 05:05:43pm
+array (
+  'status' => 0,
+  'message' => '请选择省份',
+)2021-04-24 04:58:09pm

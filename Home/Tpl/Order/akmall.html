@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html <if condition=" C('DEFAULT_LANG') EQ 'arab-ae' OR C('DEFAULT_LANG') EQ 'arab-sa' OR C('DEFAULT_LANG') EQ 'arab-jor' OR C('DEFAULT_LANG') EQ 'arab-omn' ">dir="rtl"</if>>
+<head><block name="head">
+<title>
+	<notempty name="info.name">{$info.name}<else />
+	<switch name="ACTION_NAME">
+		<case value="category">{:lang('item_category')} - </case>
+		<case value="query">{:lang('order_query')} - </case>
+		<case value="article">{$_GET.id|getFields='Category','name',###} - </case>
+	</switch>
+	{$akmallConfig.title}
+	</notempty>
+</title>
+<meta charset="utf-8" />
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="yes" name="apple-touch-fullscreen"/>
+<meta content="telephone=no" name="format-detection"/>
+<link rel="dns-prefetch" href="{$akmallHost}">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0, user-scalable=no" name="viewport">
+<meta name="description" content="<empty name='info.brief'>{$akmallConfig.description}<else />{$info.brief}</empty>">
+<meta name="keywords" content="<notempty name="info.tags">{:str_replace('#',',',$info['tags'])},</notempty>{$akmallConfig.keywords}">
+<meta name="author" content="{:lang('author')}">
+<link rel="shortcut icon" href="{:C('akmall_ROOT')}akmall.ico?v={$Think.const.AKMALL_VERSION}" />
+<link href="__PUBLIC__/akmall/akmall-order.css?v={$Think.const.AKMALL_VERSION}" rel="stylesheet">
+<notempty name="template.template"><link href="{:C('akmall_ROOT')}Home/Tpl/akmall/{$template['template']}/assets/akmall.css?v={$Think.const.AKMALL_VERSION}" rel="stylesheet"></notempty>
+<!--[if lt IE 9]><link href="__PUBLIC__/akmall/akmall-ie.css?v={$Think.const.AKMALL_VERSION}" rel="stylesheet"><![endif]-->
+<script type="text/javascript" src="__PUBLIC__/akmall/seajs/seajs/sea.js?v={:C('AKMALL_VERSION')}"></script>
+<script type="text/javascript">
+var akmallHost = "{$akmallHost}",akmallRoot = "{:C('akmall_ROOT')}",akmallVersion="{$Think.const.AKMALL_VERSION}",lang="{:C('DEFAULT_LANG')}";
+seajs.config({ base: '__PUBLIC__/akmall/seajs/',alias: {'jquery': 'jquery/jquery','akmall': 'akmall/akmall','lang': 'akmall/lang-'+lang}, map: [['.css', '.css?v=' + akmallVersion],['.js', '.js?v=' + akmallVersion]]});
+function traceExpress(com,num,order_id,order_no){
+	window.location.href= "{:C('akmall_ROOT')}index.php?m=Order&a=traceExpress&com="+com+"&num="+num+"&order_id="+order_id+"&order_no="+order_no;
+}
+</script>
+<if condition="session('fbpid')">
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+{:session('pixel_fbq')}
+fbq('track', 'PageView');
+fbq('track', 'ViewContent');
+</script>
+{:session('pixel_noscript')}
+<!-- End Facebook Pixel Code -->
+</if>
+</block>
+<notempty name="akmallConfig.head_content">{$akmallConfig.head_content}</notempty>
+<block name="css">
+<php>
+$color = $template['color'];
+</php>
+<style>
+.akmall-border,.akmall-side.akmall-full-row{ border-color:#{$akmallConfig['theme_color']};}
+<if condition="isset($template['width'])">.akmall-detail-wrap{ max-width:{$template.width};}</if>
+<if condition="!empty($color)">
+body,.akmall-order-wrap{ background-color:#{$color.body_bg};}
+.akmall-detail-content h2{ border-top-color:#{$color.body_bg};}
+.akmall-border,.akmall-side.akmall-full-row{ border-color:#{$color.border};}
+.akmall-detail-header dt{ color:#{$color.font};}
+.akmall-order{ color:#{$color.font};background-color:#{$color['form_bg']};}
+.akmall-title{ background-color:#{$color.title_bg};}
+.akmall-btn,.akmall-btn:hover, .akmall-btn:active,.akmall-badge,.akmall-params.active,.akmall-group-box input:checked + label:after{ background-color:#{$color['button_bg']};border-color:#{$color.button_bg};}
+.akmall-foot-nav{ background-color:#{$color.nav_bg};}
+.akmall-group.akmall-params.akmall-checkbox.active:hover{ background-color:#{$color.button_bg} !important;border-color:#{$color.button_bg} !important;color:#fff !important;}
+</if>
+</style>
+</block>
+</head>
+<body <if condition=" C('DEFAULT_LANG') EQ 'arab-ae' OR C('DEFAULT_LANG') EQ 'arab-sa' OR C('DEFAULT_LANG') EQ 'arab-jor' OR C('DEFAULT_LANG') EQ 'arab-omn' "> class="arab"</if>>
+
+<notempty name="akmallConfig.notice"><div class="akmallAlert"><a class="close" onclick="$('.akmallAlert').slideUp(500);">×</a>{$akmallConfig.notice}</div></notempty>
+<block name="body"></block>
+<block name="foot"></block>
+<if condition="isset($_GET['buildHtml'])">
+<script type="text/javascript">
+seajs.use(['jquery/query','jquery/cookie'],function(){var ac = $.query.get('ac');ac=ac?ac:$.query.get('gzid');if(ac){ $.cookie('ac',ac);$('input[name=channel_id]').val(ac);}})
+</script>
+</if>
+
+</body>
+</html>

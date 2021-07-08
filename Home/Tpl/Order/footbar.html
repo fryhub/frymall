@@ -1,0 +1,158 @@
+
+<div class='akmall-remark'>{$info['remark']}</div>
+<div class="akmall-footer">{$akmallConfig.footer}</div>
+<php>
+	$showNav = count(array_filter($template['extend']['bottom_nav_list']));
+	if($showNav>=0){
+		if($showNav==0){ $style = "style='width:100%'";}elseif($showNav==1){ $style = "style='width:49%'";}elseif($showNav==3){ $style = "style='width:24%'";}else{ $style = '';}
+		$hidden = (strpos($template['extend']['bottom_nav_list'][1],'http')===0)?"style='display:none;'":"";
+		$buyNow = strstr($info['content'],'akmallOrder')?'#akmallOrder':U('Order/index',array('id'=>$info['sn'],'track'=>'purchase'));
+		$html = '<div class="akmall-foot-nav"><span id="akmallUp"></span><!-- <a class="akmall-up" href="#" '.$hidden.'>'.lang('top').'</a> --><ul>';
+		for($i=1;$i<=$showNav;$i++){
+			$nav = explode('||',$template['extend']['bottom_nav_list'][$i]);
+			$class = isset($nav[2])?'icon '.$nav[2]:'';
+
+			$text = $hidden = (strpos($nav[0],'http')===0)?'<img src="'.$nav[0].'" style="max-width:100%;">':'<strong class="'.$class.'">'.$nav[0].'</strong>';
+			$html .= '<li class="foot-nav-'.$i.'" '.$style.'><a href="'.$nav[1].'">'.$text.'</a></li>';
+		}
+		echo $html.'<li class="foot-nav-3" '.$style.'><a href="'.$buyNow.'"><strong class="icon CartButton">'.lang('booking').'</strong></a></li></ul></div>';
+	}
+</php>
+
+<if condition="$akmallConfig['show_qrcode'] eq 1 && isMobile() eq false">	
+<div id="qrcode"><div class="qrcode"><div id="akmall-qrcode"></div><span>{:lang('qrcodeAddress')}</span></div></div>
+<script type="text/javascript" src="__PUBLIC__/Assets/js/qrcode.min.js"></script>	
+<script type="text/javascript">new QRCode(document.getElementById('akmall-qrcode'), {text:window.location.href,width:200,height:200});console.log(window.location.href);</script>
+</if>
+<script type="text/javascript">seajs.use(['jquery/scrollup'], function(){ $.scrollUp({scrollName: 'akmallUp'}); });</script>
+
+<!-- Facebook Pixel Code -->
+<!-- 触发AddToCart事件 -->
+<script type='text/javascript'>
+	var button = document.getElementsByClassName('CartButton');
+	var i;
+	var m = 1;//加一个判断变量 让事件只触发一次
+	for (i = 0; i < button.length; i++) {
+		button[i].addEventListener(
+		'click', 
+		function() { 
+			if(m == 1){
+				fbq('track', 'AddToCart');
+				m = 0;
+			}
+		},
+		false
+		);
+	}
+</script>
+<!-- 触发AddPaymentInfo事件 -->
+<script type="text/javascript">
+var button = document.getElementsByClassName('akmall-input-text');
+	var i;
+	var n = 1;//加一个判断变量 让事件只触发一次
+	for (i = 0; i < button.length; i++) {
+		button[i].addEventListener(
+		'change', 
+		function() { 
+			if(n == 1){
+				fbq('track', 'AddPaymentInfo');
+				n = 0;
+			}
+		},
+		false
+		);
+	}
+  
+</script>
+<!-- End Facebook Pixel Code -->
+
+<script type="text/javascript">
+seajs.use(['akmall','jquery/form','lang'],function(akmall){
+	 			
+	window.akmall = akmall;
+	akmall.quantity(0);
+	var btnSubmit = $('.akmall-submit');
+	$('#akmallForm').ajaxForm({
+		cache: true,
+		timeout: 50000,
+		dataType: 'json',
+		error:function(){ layer.closeAll(); alert(lang.ajaxError); btnSubmit.attr('disabled',false).val(lang.submit); },
+		beforeSubmit:function(){
+			if(checkForm('#akmallForm')==false) return false; 
+			layer.closeAll();layer.load();
+			btnSubmit.attr('disabled',true).val(lang.loading);
+		},
+		success:function(data){
+			<if condition="session('fbpid')">
+				fbq('track', 'InitiateCheckout');
+			</if>
+			layer.closeAll();layer.closeAll();
+			if(data.status=='1'){
+				{$info.javascript}
+				<if condition="session('fbpid')">
+				fbq('track', 'Purchase', 
+					{
+					value: data.data.total_price,
+					currency: '{:lang("currency")}',
+					}
+				);
+				</if>
+				var redirect = "{:U('Order/pay',array('order_no'=>'__orderNo__'))}";
+				window.location.href = redirect.replace('__orderNo__',data.data.order_no);
+			}else{
+				btnSubmit.attr('disabled',false).val(lang.submit);
+				layer.msg(data.info);
+			}
+		}
+	});
+});
+var wx = {$info.weixin|json_encode};
+</script>
+
+
+<notempty name="akmallConfig.weixin_status">
+<php>$slideshow = explode(',',$info['slideshow']);$imgUrl=$slideshow[0];</php>
+<script>
+define("wxShare",["jquery","https://res.wx.qq.com/open/js/jweixin-1.0.0.js"],function(a){
+	var $=a("jquery"),wx=a('https://res.wx.qq.com/open/js/jweixin-1.0.0.js');
+	var url = encodeURIComponent(location.href.split('#')[0]);
+    $.ajax({
+        type : "get",
+        url : "{:C('akmall_ROOT')}index.php?m=Order&a=wx&url="+url,
+        dataType : "json",
+        async : false,
+        success:function(share){
+            wx.config({
+                debug: false,
+                appId: share.appId,
+                timestamp: share.timestamp,
+                nonceStr: share.nonceStr,
+                url: share.url,
+                signature: share.signature,
+				//jsApiList:['onMenuShareAppMessage', 'onMenuShareTimeline', 'hideAllNonBaseMenuItem', 'showMenuItems','hideMenuItems']
+                jsApiList: [ 'onMenuShareTimeline', 'onMenuShareAppMessage']
+            });
+        },
+		complete: function(e){
+			console.log('complete');
+		},
+        error:function(data){  alert(data); }
+    });
+	wx.ready(function () {
+		var shareData = {
+			title: '{$info.name}',
+			desc: '{$info.brief}',
+			link: '{$thisUrl|urldecode}',
+			imgUrl: '{$imgUrl|imageUrl}',
+			success: function () {
+				alert('分享成功！');
+			}
+		};
+		wx.hideAllNonBaseMenuItem();
+		wx.onMenuShareAppMessage(shareData);
+		wx.onMenuShareTimeline(shareData);
+	});
+});
+seajs.use("wxShare");
+</script>
+</notempty>

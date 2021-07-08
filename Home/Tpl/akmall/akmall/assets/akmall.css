@@ -1,0 +1,61 @@
+/*
+ * 标题：AK单页订单管理系统企业版
+ * 作者：123456（微信号）
+ * 官方网址：123456
+ * *
+ */
+*{margin:0;padding:0;}
+body{margin:0;padding:0;height:100%;font:14px "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, serif}
+h1{font-size:18px}
+h2{font-size:16px}
+a{color:#EB5F3E;text-decoration:none}
+a:hover{text-decoration:underline}
+.label{background:#EB5F3E;padding:5px 8px;border-radius:3px;font-size:12px;color:#fff;vertical-align:middle}
+.wrapper{background-color:#f1f1f1;background-color:rgba(255, 255, 255, .2);border:1px solid #eee;max-width:750px;margin:0 auto}
+.header{padding:5px 5px;border-bottom:1px solid #ccc;border-bottom:1px solid rgba(255, 255, 255, .1);color:#fff;background-image:linear-gradient(to right,#F34242 22%,#EC2263 76%);}
+.akmall-detail-content{padding:0;}
+
+.akmall-page img{max-width:100%;}
+.akmall-page .box{padding:0;background:#fff}
+.akmall-page .box a:hover{text-decoration:none}
+.akmall-page .box a:hover span{text-decoration:underline}
+.akmall-page .box a:hover .label{text-decoration:none}
+.akmall-page .box h2.title{margin:0;padding:5px 10px;border-top:1px solid #eee; border-bottom:1px solid #eee; font-weight:normal;background: url(vline.jpg) no-repeat 15px center;padding-left: 27px;}
+.akmall-page .box-image .box-content{text-align:center;}
+.akmall-page .box .box-content table.links{margin-top:-1px;width:100%;border-spacing:0;border-collapse:collapse}
+.akmall-page .box .box-content table.links td{padding:3px 3px 3px 10px;border:1px solid #ddd;border-left:0}
+.akmall-page .box .box-content table.links td:nth-child(2){border-left:1px solid #ddd;border-right:0}
+.akmall-page .box .box-content table.links td a{display:block}
+.akmall-page .box-image{padding-bottom:0 !important;}
+.akmall-page .akmall-order{border-bottom:none;}
+.akmall-remark{color:#ccc;padding-top:10px;}
+.akmall-footer{color:#737373;text-align:center;border-top:none;background:none;}
+.akmall-footer a{color:#737373;}
+.akmall-footer p{padding:0 0 20px 0;font-size:12px}
+
+.akmall-plug {height:54px;color:#fff;overflow:hidden;background-image:linear-gradient(to right,#F34242 22%,#EC2263 76%);}
+.akmall-plug .price{float:left;height:54px;width:70%;vertical-align:bottom;}
+.akmall-plug .price .symbol{float:left;vertical-align:bottom;font-size: 24px;line-height: 54px;}
+.akmall-plug .current-price{float:left;font-size:35px;line-height:54px;vertical-align:bottom;letter-spacing:-3px;}
+.akmall-plug .group{float:left;margin-left:5px;}
+.akmall-plug .original-price{padding-top:5px;line-height:20px;vertical-align:top;display:block;}
+.akmall-plug .salenum{line-height:20px;vertical-align:bottom;height: 25px;line-height: 25px;padding: 2px;background: #ca032e;border-radius: 1px;}
+.akmall-plug .timer{float:left;height:54px;width:30%;background: -webkit-gradient(linear,0 0,0 100%,from(#fef391),to(#fbe253));color:#555;text-align:center;line-height:20px;font-weight:bold;}
+.akmall-plug .timer .tt{ white-space:nowrap;padding-top:5px;color: #f61d4b;}
+.akmall-plug .timer .akmall-timer strong{background: #543411; padding: 1px;border-radius: 3px;color: #fff;}
+
+.akmall-content-title{padding:15px;}
+.baoyou{background:rgba(255,200,200,.2);overflow:hidden; padding:10px 0 10px 10px;}
+.baoyou span{padding-left:22px; float:left; margin-right:15px; display:inline; font-size:13px;background:url(icon-ok.svg) left center no-repeat;background-size:20px 20px;}
+
+.gou{margin: 5px 5px 15px 5px;height: 45px;background-image:linear-gradient(to left,#F34242 22%,#EC2263 76%);border-radius: 3px;font-size: 18px;color: #fff;text-align: center;line-height: 45px;}
+.gou a{color:#fff;font-size:18px;text-decoration:none;width:100%;}
+.akmallDay strong:after{font-size:15px;content:' D '}
+.comment-title{display:none;}
+
+.akmall-detail-content h2{border-color:#eee !important;}
+
+.akmall-query{	max-width:750px;margin:30px auto;padding-bottom: 30px;background: #fff;}
+.akmall-query .rows-head{font-size: 16px;color: #555;background-color :#fff;font-weight: bold;text-align: center;line-height: 44px;height: 44px;box-shadow: 0 1px 1px #ddd;}
+.akmall-query .rows-params{	width: 65%;color: #666;padding: 20px;margin:0 auto;}
+.akmall-query .akmall-id-btn{width: 120px;height: 28px;line-height: 28px;color: #fff;font-size: 16px;border: none;margin:0 auto 20px;}

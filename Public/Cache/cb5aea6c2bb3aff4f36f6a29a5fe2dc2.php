@@ -1,0 +1,3 @@
+<?php
+//000000864000a:11:{s:2:"id";s:2:"13";s:5:"theme";s:6:"akmall";s:8:"template";s:6:"jianyi";s:7:"options";s:94:"["product","extends","quantity","price","name","mobile","region","address","remark","payment"]";s:5:"width";s:5:"750px";s:11:"show_notice";s:1:"1";s:13:"show_comments";s:1:"0";s:4:"info";s:0:"";s:5:"color";s:132:"{"body_bg":"F4F4F4","form_bg":"FFFFFF","title_bg":"D32E00","button_bg":"EE3300","font":"333333","border":"FFFFFF","nav_bg":"FFFFFF"}";s:12:"redirect_uri";s:0:"";s:6:"extend";s:160:"a:2:{s:7:"padding";s:1:"0";s:15:"bottom_nav_list";a:3:{i:1;s:41:"查詢||/index.php?m=Order&a=query||query";i:2;s:27:"客服||http://url||message";i:3;s:0:"";}}";}
+?>

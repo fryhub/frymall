@@ -1,0 +1,30 @@
+
+	<div class="newmain footer">{$akmallConfig.footer}</div>
+	<div class="clear ptop"></div>
+	
+	<notempty name="akmallConfig.foot_info"><div class="akmall-foot-info" style="position:fixed;z-index:100;height: 45px;line-height: 45px;bottom:46px;text-align:center;background:#f60;color:#fff;width:100%;">{$akmallConfig.foot_info}</div></notempty>
+	<notempty name="akmallConfig.show_bottom_nav">
+	<div class="nav2">
+		<!-- <php>
+		$navArray = explode("<br />",nl2br($akmallConfig['footer_nav']));
+		foreach($navArray as $li){ $nav[] = explode('||',$li);}
+		$width = 100/(count($nav)+1);
+		</php> -->
+			
+		<li style="width:33.3%"><a href="{:U('Item/index')}"><span><img src="__PUBLIC__/akmall/Item/icon-home.svg"></span><p>{:lang('index')}</p></a></li>
+		<li style="width:33.3%"><a href="index.php?m=Item&a=category"><span><img src="__PUBLIC__/akmall/Item/icon-menu.svg"></span><p>{:lang('category')}</p></a></li>
+		<li style="width:33.3%"><a href="index.php?m=Item&a=query"><span><img src="__PUBLIC__/akmall/Item/icon-newspaper.svg"></span><p>{:lang('query')}</p></a></li>
+		<!-- <volist name="nav" id="vo">
+		<php>
+			$ico = isset($vo[2])?$vo[2]:'newspaper';
+			$vo[1] = strpos($vo[1],'index.php')===0?C('akmall_ROOT').$vo[1]:$vo[1];
+		</php>
+		<li style="width:{$width}%"><a href="{$vo[1]}"><span><img src="__PUBLIC__/akmall/Item/icon-{$ico}.svg"></span><p>{$vo[0]}</p></a></li>
+		</volist> -->
+	</div>
+	</notempty>
+<script type="text/javascript">
+seajs.use(['jquery/scrollup'], function(){ $.scrollUp({scrollName: 'akmallUp'}); });
+</script>
+</body>
+</html>
